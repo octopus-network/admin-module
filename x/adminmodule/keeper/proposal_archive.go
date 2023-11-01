@@ -5,7 +5,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 
-	"admin-module/x/adminmodule/types"
+	"github.com/octopus-network/admin-module/x/adminmodule/types"
 )
 
 func (k Keeper) GetArchivedProposals(ctx sdk.Context) []*govtypes.Proposal {

@@ -8,7 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 
-	"admin-module/x/adminmodule/types"
+	"github.com/octopus-network/admin-module/x/adminmodule/types"
 )
 
 // GetTxCmd returns the transaction commands for this module

@@ -110,10 +110,13 @@ import (
 	ibctm "github.com/cosmos/ibc-go/v7/modules/light-clients/07-tendermint"
 	"github.com/spf13/cast"
 
-	// this line is used by starport scaffolding # stargate/app/moduleImport
+	adminmodulemodule "github.com/octopus-network/admin-module/x/adminmodule"
+	adminmoduleclient "github.com/octopus-network/admin-module/x/adminmodule/client"
+	adminmodulemodulekeeper "github.com/octopus-network/admin-module/x/adminmodule/keeper"
+	adminmodulemoduletypes "github.com/octopus-network/admin-module/x/adminmodule/types"
 
-	appparams "admin-module/app/params"
-	"admin-module/docs"
+	appparams "github.com/octopus-network/admin-module/app/params"
+	"github.com/octopus-network/admin-module/docs"
 )
 
 const (
@@ -170,7 +173,13 @@ var (
 		ica.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 		consensus.AppModuleBasic{},
-		// this line is used by starport scaffolding # stargate/app/moduleBasic
+		adminmodulemodule.NewAppModuleBasic(
+			adminmoduleclient.ParamChangeProposalHandler,
+			adminmoduleclient.SoftwareUpgradeProposalHandler,
+			adminmoduleclient.CancelUpgradeProposalHandler,
+			adminmoduleclient.IBCClientUpdateProposalHandler,
+			adminmoduleclient.IBCClientUpgradeProposalHandler,
+		),
 	)
 
 	// module account permissions
@@ -245,7 +254,7 @@ type App struct {
 	ScopedTransferKeeper capabilitykeeper.ScopedKeeper
 	ScopedICAHostKeeper  capabilitykeeper.ScopedKeeper
 
-	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
+	AdminmoduleKeeper adminmodulemodulekeeper.Keeper
 
 	// mm is the module manager
 	mm *module.Manager
@@ -291,7 +300,7 @@ func New(
 		govtypes.StoreKey, paramstypes.StoreKey, ibcexported.StoreKey, upgradetypes.StoreKey,
 		feegrant.StoreKey, evidencetypes.StoreKey, ibctransfertypes.StoreKey, icahosttypes.StoreKey,
 		capabilitytypes.StoreKey, group.StoreKey, icacontrollertypes.StoreKey, consensusparamtypes.StoreKey,
-		// this line is used by starport scaffolding # stargate/app/storeKey
+		adminmodulemoduletypes.StoreKey,
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
@@ -513,6 +522,24 @@ func New(
 		),
 	)
 
+	// register the proposal types
+	adminRouter := govv1beta1.NewRouter()
+	adminRouter.AddRoute(govtypes.RouterKey, govv1beta1.ProposalHandler).
+		AddRoute(paramproposal.RouterKey, params.NewParamChangeProposalHandler(app.ParamsKeeper)).
+		AddRoute(upgradetypes.RouterKey, upgrade.NewSoftwareUpgradeProposalHandler(app.UpgradeKeeper)).
+		AddRoute(ibcclienttypes.RouterKey, ibcclient.NewClientProposalHandler(app.IBCKeeper.ClientKeeper))
+
+	app.AdminmoduleKeeper = *adminmodulemodulekeeper.NewKeeper(
+		appCodec,
+		keys[adminmodulemoduletypes.StoreKey],
+		keys[adminmodulemoduletypes.MemStoreKey],
+		adminRouter,
+		// this allows any type of proposal to be submitted to the admin module (everything is whitelisted)
+		// projects will implement their functions to define what is allowed for admins.
+		func(govv1beta1.Content) bool { return true },
+	)
+	adminModule := adminmodulemodule.NewAppModule(appCodec, app.AdminmoduleKeeper)
+
 	// this line is used by starport scaffolding # stargate/app/keeperDefinition
 
 	/**** IBC Routing ****/
@@ -574,7 +601,7 @@ func New(
 		params.NewAppModule(app.ParamsKeeper),
 		transferModule,
 		icaModule,
-		// this line is used by starport scaffolding # stargate/app/appModule
+		adminModule,
 
 		crisis.NewAppModule(app.CrisisKeeper, skipGenesisInvariants, app.GetSubspace(crisistypes.ModuleName)), // always be last to make sure that it checks for all invariants and not only part of them
 	)
@@ -606,7 +633,7 @@ func New(
 		paramstypes.ModuleName,
 		vestingtypes.ModuleName,
 		consensusparamtypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/beginBlockers
+		adminmodulemoduletypes.ModuleName,
 	)
 
 	app.mm.SetOrderEndBlockers(
@@ -631,7 +658,7 @@ func New(
 		upgradetypes.ModuleName,
 		vestingtypes.ModuleName,
 		consensusparamtypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/endBlockers
+		adminmodulemoduletypes.ModuleName,
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are
@@ -661,7 +688,7 @@ func New(
 		upgradetypes.ModuleName,
 		vestingtypes.ModuleName,
 		consensusparamtypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/initGenesis
+		adminmodulemoduletypes.ModuleName,
 	}
 	app.mm.SetOrderInitGenesis(genesisModuleOrder...)
 	app.mm.SetOrderExportGenesis(genesisModuleOrder...)
@@ -885,7 +912,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(ibcexported.ModuleName)
 	paramsKeeper.Subspace(icacontrollertypes.SubModuleName)
 	paramsKeeper.Subspace(icahosttypes.SubModuleName)
-	// this line is used by starport scaffolding # stargate/app/paramSubspace
+	paramsKeeper.Subspace(adminmodulemoduletypes.ModuleName)
 
 	return paramsKeeper
 }

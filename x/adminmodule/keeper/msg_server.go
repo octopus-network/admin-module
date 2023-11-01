@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"admin-module/x/adminmodule/types"
+	"github.com/octopus-network/admin-module/x/adminmodule/types"
 )
 
 type msgServer struct {

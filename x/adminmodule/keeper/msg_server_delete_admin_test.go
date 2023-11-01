@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	"admin-module/x/adminmodule/types"
+	"github.com/octopus-network/admin-module/x/adminmodule/types"
 )
 
 func TestDeleteAdmin(t *testing.T) {

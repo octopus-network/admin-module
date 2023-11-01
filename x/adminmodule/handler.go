@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"admin-module/x/adminmodule/keeper"
-	"admin-module/x/adminmodule/types"
+	"github.com/octopus-network/admin-module/x/adminmodule/keeper"
+	"github.com/octopus-network/admin-module/x/adminmodule/types"
 )
 
 // NewHandler ...

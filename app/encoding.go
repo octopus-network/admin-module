@@ -6,7 +6,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/std"
 	"github.com/cosmos/cosmos-sdk/x/auth/tx"
 
-	"admin-module/app/params"
+	"github.com/octopus-network/admin-module/app/params"
 )
 
 // makeEncodingConfig creates an EncodingConfig for an amino based test configuration.

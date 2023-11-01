@@ -3,7 +3,7 @@ package cmd
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"admin-module/app"
+	"github.com/octopus-network/admin-module/app"
 )
 
 func initSDKConfig() {

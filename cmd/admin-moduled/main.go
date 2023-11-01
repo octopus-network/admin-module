@@ -6,8 +6,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 
-	"admin-module/app"
-	"admin-module/cmd/admin-moduled/cmd"
+	"github.com/octopus-network/admin-module/app"
+	"github.com/octopus-network/admin-module/cmd/admin-moduled/cmd"
 )
 
 func main() {

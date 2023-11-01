@@ -1,4 +1,4 @@
-module admin-module
+module github.com/octopus-network/admin-module
 
 go 1.21
 
