@@ -8,7 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/types"
+	"github.com/cosmos/admin-module/x/adminmodule/types"
 )
 
 var _ = strconv.Itoa(0)

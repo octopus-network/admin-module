@@ -17,4 +17,4 @@ cd ..
 
 # move proto files to the right places
 cp -r admin-module/* ./
-rm -rf admin-module
+#rm -rf admin-module

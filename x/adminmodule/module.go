@@ -19,9 +19,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/client/cli"
-	"github.com/octopus-network/admin-module/x/adminmodule/keeper"
-	"github.com/octopus-network/admin-module/x/adminmodule/types"
+	"github.com/cosmos/admin-module/x/adminmodule/client/cli"
+	"github.com/cosmos/admin-module/x/adminmodule/keeper"
+	"github.com/cosmos/admin-module/x/adminmodule/types"
 
 	govclient "github.com/cosmos/cosmos-sdk/x/gov/client"
 )

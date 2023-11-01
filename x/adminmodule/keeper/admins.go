@@ -6,7 +6,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/types"
+	"github.com/cosmos/admin-module/x/adminmodule/types"
 )
 
 func (k Keeper) GetAdmins(ctx sdk.Context) []string {

@@ -1,4 +1,4 @@
-module github.com/octopus-network/admin-module
+module github.com/cosmos/admin-module
 
 go 1.21
 

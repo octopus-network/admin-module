@@ -6,7 +6,7 @@ import (
 	clienttypes "github.com/cosmos/ibc-go/v7/modules/core/02-client/types"
 	"github.com/spf13/cobra"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/types"
+	"github.com/cosmos/admin-module/x/adminmodule/types"
 )
 
 func NewCmdSubmitUpdateClientProposal() *cobra.Command {

@@ -12,7 +12,7 @@ import (
 	gov "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/types"
+	"github.com/cosmos/admin-module/x/adminmodule/types"
 )
 
 const (

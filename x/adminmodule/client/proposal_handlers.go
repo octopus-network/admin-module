@@ -3,7 +3,7 @@ package client
 import (
 	govclient "github.com/cosmos/cosmos-sdk/x/gov/client"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/client/cli"
+	"github.com/cosmos/admin-module/x/adminmodule/client/cli"
 )
 
 // Param change proposal handler.

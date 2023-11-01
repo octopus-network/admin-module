@@ -16,8 +16,8 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 	"github.com/stretchr/testify/require"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/keeper"
-	"github.com/octopus-network/admin-module/x/adminmodule/types"
+	"github.com/cosmos/admin-module/x/adminmodule/keeper"
+	"github.com/cosmos/admin-module/x/adminmodule/types"
 )
 
 func setupKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {

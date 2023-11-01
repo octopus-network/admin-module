@@ -3,8 +3,8 @@ package adminmodule
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/keeper"
-	"github.com/octopus-network/admin-module/x/adminmodule/types"
+	"github.com/cosmos/admin-module/x/adminmodule/keeper"
+	"github.com/cosmos/admin-module/x/adminmodule/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis

@@ -9,8 +9,8 @@ import (
 	gov "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 
-	"github.com/octopus-network/admin-module/x/adminmodule/keeper"
-	"github.com/octopus-network/admin-module/x/adminmodule/types"
+	"github.com/cosmos/admin-module/x/adminmodule/keeper"
+	"github.com/cosmos/admin-module/x/adminmodule/types"
 )
 
 // EndBlocker called every block, process inflation, update validator set.

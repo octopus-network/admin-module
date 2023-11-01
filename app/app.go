@@ -110,13 +110,13 @@ import (
 	ibctm "github.com/cosmos/ibc-go/v7/modules/light-clients/07-tendermint"
 	"github.com/spf13/cast"
 
-	adminmodulemodule "github.com/octopus-network/admin-module/x/adminmodule"
-	adminmoduleclient "github.com/octopus-network/admin-module/x/adminmodule/client"
-	adminmodulemodulekeeper "github.com/octopus-network/admin-module/x/adminmodule/keeper"
-	adminmodulemoduletypes "github.com/octopus-network/admin-module/x/adminmodule/types"
+	adminmodulemodule "github.com/cosmos/admin-module/x/adminmodule"
+	adminmoduleclient "github.com/cosmos/admin-module/x/adminmodule/client"
+	adminmodulemodulekeeper "github.com/cosmos/admin-module/x/adminmodule/keeper"
+	adminmodulemoduletypes "github.com/cosmos/admin-module/x/adminmodule/types"
 
-	appparams "github.com/octopus-network/admin-module/app/params"
-	"github.com/octopus-network/admin-module/docs"
+	appparams "github.com/cosmos/admin-module/app/params"
+	"github.com/cosmos/admin-module/docs"
 )
 
 const (
